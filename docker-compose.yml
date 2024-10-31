@@ -1,0 +1,6 @@
+﻿services:
+  musicshop:
+    image: musicshop
+    build:
+      context: .
+      dockerfile: MusicShop/Dockerfile
