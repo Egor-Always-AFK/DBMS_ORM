@@ -33,7 +33,7 @@ public class TrackRepository : ITrackRepository
             return "notFound";
         }
 
-        var tracks = _context.Tracks.Where(t => t.genreId == foundGenre.id).ToList(); // Получаем список треков
+        var tracks = _context.Tracks.Where(t => t.genreId == foundGenre.id).ToList();
 
         if (!tracks.Any())
         {

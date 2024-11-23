@@ -15,8 +15,9 @@ public class Album
     public string title { get; set; }
     
     [Column("artist_id")]
-    public ulong artistId { get; set; }
+    [ForeignKey("artist_id")]
+    public long artistId { get; set; }
     
     [Column("media_id")]
-    public ulong mediaId { get; set; }
+    public long mediaId { get; set; }
 }

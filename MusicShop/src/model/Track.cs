@@ -15,7 +15,7 @@ public class Track
     public string title { get; set; }
     
     [Column("album_id")]
-    public ulong albumId { get; set; }
+    public long albumId { get; set; }
 
     [Column("track_duration")]
     public int duration { get; set; }
