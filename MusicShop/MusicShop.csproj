@@ -32,4 +32,10 @@
       <Folder Include="src\service\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Migrations\*">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
