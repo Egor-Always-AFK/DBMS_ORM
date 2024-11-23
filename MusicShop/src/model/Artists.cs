@@ -16,4 +16,10 @@ public class Artists
     
     [Column("bio")]
     public string bio { get; set; }
+
+    public Artists(string name, string bio)
+    {
+        this.name = name;
+        this.bio = bio;
+    }
 }

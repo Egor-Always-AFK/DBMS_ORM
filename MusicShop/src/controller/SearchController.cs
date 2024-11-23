@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MusicShop.dto;
+using MusicShop.model;
 using MusicShop.repository;
 
 namespace MusicShop.controller;
@@ -7,11 +9,11 @@ namespace MusicShop.controller;
 [Route("/api/search")]
 public class SearchController : ControllerBase
 {
-    private readonly ITrackRepository _repository;
-
-    public SearchController(ITrackRepository repository)
+    private readonly ITrackRepository _trackRepository;
+    
+    public SearchController(ITrackRepository trackRepository)
     {
-        _repository = repository;
+        _trackRepository = trackRepository;
     }
     
     [HttpGet("hello")]
@@ -33,13 +35,14 @@ public class SearchController : ControllerBase
     [HttpGet("all")]
     public string? getAllTracks()
     {
-        return _repository.getAllTracks()?.ToString();
+        return _trackRepository.getAllTracks()?.ToString();
     }
 
     [HttpGet("genre/{genreName}")]
     public string? searchAllTracksByGenre(String genreName)
     {
-        return _repository.getAllTracksByGenre(genreName)?.ToString();
+        return _trackRepository.getAllTracksByGenre(genreName)?.ToString();
     }
-    
+
+
 }

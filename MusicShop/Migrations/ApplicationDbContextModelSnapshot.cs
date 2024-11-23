@@ -28,6 +28,8 @@ namespace MusicShop.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("album_id");
 
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("id"));
+
                     b.Property<long>("artistId")
                         .HasColumnType("bigint")
                         .HasColumnName("artist_id");
@@ -42,6 +44,10 @@ namespace MusicShop.Migrations
                         .HasColumnName("title");
 
                     b.HasKey("id");
+
+                    b.HasIndex("artistId");
+
+                    b.HasIndex("mediaId");
 
                     b.ToTable("albums", (string)null);
                 });
@@ -100,6 +106,8 @@ namespace MusicShop.Migrations
 
                     b.HasIndex("albumId");
 
+                    b.HasIndex("genreId");
+
                     b.ToTable("tracks", (string)null);
                 });
 
@@ -145,7 +153,13 @@ namespace MusicShop.Migrations
                 {
                     b.HasOne("MusicShop.model.Artists", null)
                         .WithMany()
-                        .HasForeignKey("id")
+                        .HasForeignKey("artistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicShop.model.dictionary.MediaType", null)
+                        .WithMany()
+                        .HasForeignKey("mediaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -155,6 +169,12 @@ namespace MusicShop.Migrations
                     b.HasOne("MusicShop.model.Album", null)
                         .WithMany()
                         .HasForeignKey("albumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicShop.model.dictionary.Genres", null)
+                        .WithMany()
+                        .HasForeignKey("genreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

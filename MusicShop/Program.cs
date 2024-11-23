@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ITrackRepository, TrackRepository>();
+builder.Services.AddScoped<IArtistsRepository, ArtistRepository>();
 
 var app = builder.Build();
 
@@ -44,6 +45,7 @@ using (var scope = app.Services.CreateScope())
                 {
                     command.ExecuteNonQuery();
                 }
+                connection.Close();
             }
             Console.WriteLine($"SQL script {Path.GetFileName(sqlFile)} migrations have been successfully applied.");
         }

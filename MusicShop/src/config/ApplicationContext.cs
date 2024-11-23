@@ -10,7 +10,7 @@ public class ApplicationDbContext : DbContext
         : base(options) { }
 
     public DbSet<Album> Albums { get; set; }
-    public DbSet<Artists> Artists { get; set; }
+    public DbSet<Artists?> Artists { get; set; }
     public DbSet<Track> Tracks { get; set; }
     public DbSet<Genres> Genres { get; set; }
     public DbSet<MediaType> MediaTypes { get; set; }
@@ -51,10 +51,22 @@ public class ApplicationDbContext : DbContext
             .HasOne<Album>()
             .WithMany()
             .HasForeignKey(t => t.albumId);
+        
+        modelBuilder.Entity<Track>()
+            .HasOne<Genres>()
+            .WithMany()
+            .HasForeignKey(t => t.genreId);
 
         modelBuilder.Entity<Album>()
             .HasOne<Artists>()
             .WithMany()
-            .HasForeignKey(a => a.id);
+            .HasForeignKey(a => a.artistId);
+
+        modelBuilder.Entity<Album>()
+            .HasOne<MediaType>()
+            .WithMany()
+            .HasForeignKey(a => a.mediaId);
+        
+        
     }
 }
