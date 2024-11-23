@@ -16,7 +16,7 @@ insert into media (media_id, type) values
 on conflict do nothing;
 
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
-VALUES ('20241123094557_addGenreAndMediaType', '9.0.1');
+VALUES ('20241123094557_addGenreAndMediaType', '9.0.1') on conflict do nothing;
 
 COMMIT;
 
