@@ -12,7 +12,7 @@ public interface IArtistsRepository
     
     void updateArtist(Artists artists);
     
-    void deleteArtist(long id);
+    void deleteArtist(Artists artist);
     
     Artists? getArtistByName(string name);
 }

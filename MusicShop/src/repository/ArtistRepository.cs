@@ -1,4 +1,5 @@
-﻿using MusicShop.config;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicShop.config;
 using MusicShop.model;
 
 namespace MusicShop.repository;
@@ -30,17 +31,24 @@ public class ArtistRepository : IArtistsRepository
 
     public void addArtist(Artists? artist)
     {
-        _context.Artists.Add(artist);
-        _context.SaveChanges();
+        var artists = this.getArtistByName(artist.name);
+        if (artists == null)
+        {
+            _context.Artists.Add(artist);
+            _context.SaveChanges();
+        }
     }
 
     public void updateArtist(Artists artists)
     {
-        throw new NotImplementedException();
+        Console.WriteLine(artists.name + " | " + artists.bio);
+        _context.Artists.Update(artists);  
+        _context.SaveChanges();
     }
 
-    public void deleteArtist(long id)
+    public void deleteArtist(Artists artist)
     {
-        throw new NotImplementedException();
+        _context.Artists.Remove(artist);    
+        _context.SaveChanges();
     }
 }
