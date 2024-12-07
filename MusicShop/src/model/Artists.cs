@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MusicShop.model;
 
 [Table("artists")]
-public class Artists
+public class Artists : Exception
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

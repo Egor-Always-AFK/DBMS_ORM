@@ -7,20 +7,23 @@ namespace MusicShop.controller;
 
 [ApiController]
 [Route("/api/search")]
-public class SearchController : ControllerBase
+public class TrackController : ControllerBase
 {
     private readonly ITrackRepository _trackRepository;
     
-    public SearchController(ITrackRepository trackRepository)
+    private readonly IAlbumRepository _albumRepository;
+    
+    public TrackController(ITrackRepository trackRepository, IAlbumRepository albumRepository)
     {
         _trackRepository = trackRepository;
+        _albumRepository = albumRepository;
     }
     
     [HttpGet("hello")]
     public String hello() => "Hello world!";
 
     [HttpGet("name/{artistName}")]
-    public string? searchAllTracksByArtistName(String artistName)
+    public string? SearchAllTracksByArtistName(String artistName)
     {
         if (artistName.Equals("Toxi$"))
         {

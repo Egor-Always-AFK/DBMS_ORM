@@ -21,7 +21,7 @@ public class TrackRepository : ITrackRepository
 
     public string? getAllTracks()
     {
-       return _context.Tracks.ToList().ToString();
+       return _context.Tracks.ToString();
     }
 
     public string? getAllTracksByGenre(string genre)
@@ -43,6 +43,11 @@ public class TrackRepository : ITrackRepository
         return tracks.ToString();
     }
 
+    public Track? getTrackByName(string name)
+    {
+        return _context.Tracks.FirstOrDefault(t => t.title.Equals(name));
+    }
+
     public string? GetAllTracksByArtistName(string artistName)
     {
         return _context.Tracks.Find(artistName)?.ToString();
@@ -50,16 +55,23 @@ public class TrackRepository : ITrackRepository
 
     public void addTrack(Track track)
     {
-        throw new NotImplementedException();
+        var found = this.getTrackByName(track.title);
+        if (found != null && found.title != track.title && found.albumId != track.albumId)
+        {
+            _context.Tracks.Add(track);
+            _context.SaveChanges();   
+        }
     }
 
     public void updateTrack(Track track)
     {
-        throw new NotImplementedException();
+        _context.Tracks.Update(track);
+        _context.SaveChanges();
     }
 
     public void deleteTrack(Track track)
     {
-        throw new NotImplementedException();
+        _context.Tracks.Remove(track);
+        _context.SaveChanges();
     }
 }

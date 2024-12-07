@@ -21,12 +21,12 @@ public class ArtistRepository : IArtistsRepository
 
     public Artists? getArtistById(int id)
     {
-        throw new NotImplementedException();
+        throw _context.Artists.AsNoTracking().FirstOrDefault(a => a.id.Equals(id));
     }
 
     public string? getAllArtists()
     {
-        throw new NotImplementedException();
+        return _context.Artists.ToString();
     }
 
     public void addArtist(Artists? artist)
