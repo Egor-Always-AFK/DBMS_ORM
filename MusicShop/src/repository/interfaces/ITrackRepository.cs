@@ -11,6 +11,8 @@ public interface ITrackRepository
     
     string? getAllTracksByGenre(string genre);
 
+    Track? getTrackByName(string name);
+
     public string? GetAllTracksByArtistName(string artistName);
     
     void addTrack(Track track);

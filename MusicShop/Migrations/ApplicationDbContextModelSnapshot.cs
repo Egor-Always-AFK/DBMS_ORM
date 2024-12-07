@@ -61,6 +61,15 @@ namespace MusicShop.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("id"));
 
+                    b.Property<int>("HResult")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("HelpLink")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("text");
+
                     b.Property<string>("bio")
                         .IsRequired()
                         .HasColumnType("text")
