@@ -21,7 +21,7 @@ public class ArtistRepository : IArtistsRepository
 
     public Artists? getArtistById(long id)
     {
-        throw _context.Artists.Find(id);
+        return _context.Artists.Find(id);
     }
 
     public string? getAllArtists()
