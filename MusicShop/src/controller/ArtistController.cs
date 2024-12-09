@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json.Nodes;
+using Microsoft.AspNetCore.Mvc;
 using MusicShop.dto;
 using MusicShop.model;
 using MusicShop.repository;
@@ -22,10 +23,10 @@ public class ArtistController : ControllerBase
     {
         if (artist == null) 
         {
-            return BadRequest("Request body is empty");
+            return BadRequest(new { message = "Request body is empty" });
         }
         _artistsRepository.addArtist(new Artists(artist.name, artist.bio));
-        return Ok("Success");
+        return Ok(new {message = "Success"});
     }
 
     [HttpGet("{name}")]
@@ -34,9 +35,9 @@ public class ArtistController : ControllerBase
         var found = _artistsRepository.getArtistByName(name);
         if (found == null)
         {
-            return NotFound("No Artist Found");
+            return NotFound(new { message = "No Artist Found" });
         }
-        return Ok("Name: " + found.name + "\nBio: " + found.bio);
+        return Ok(new { name = found.name, bio = found.bio });
     }
 
     [HttpPost("updateArtist")]
@@ -46,11 +47,11 @@ public class ArtistController : ControllerBase
         Console.WriteLine(artist.name);
         if (found == null)
         {
-            return NotFound("No artist found");
+            return NotFound(new { message = "No artist found" });
         }
         found.bio = artist.bio;
         _artistsRepository.updateArtist(found);
-        return Ok("Artist updated");
+        return Ok(new { message = "Artist updated" });
     }
 
     [HttpDelete("deleteArtist/{name}")]
@@ -59,10 +60,10 @@ public class ArtistController : ControllerBase
         var found = _artistsRepository.getArtistByName(name);
         if (found == null)
         {
-            return NotFound("No Artist found");
+            return NotFound(new { message = "No Artist found" });
         }
         _artistsRepository.deleteArtist(found);
-        return Ok("Artist deleted");
+        return Ok(new { message = "Artist deleted" });
     }
     
 }

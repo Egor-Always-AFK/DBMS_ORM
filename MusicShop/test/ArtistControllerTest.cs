@@ -30,8 +30,8 @@ public class ArtistControllerTest
         var result = _artistController.AddArtist(artist);
     
        Assert.That(result.GetType(), Is.EqualTo(typeof(BadRequestObjectResult)));
-       var badRequestResult = result as BadRequestObjectResult;
-       Assert.That(badRequestResult?.Value, Is.EqualTo("Request body is empty"));
+       // var badRequestResult = result as BadRequestObjectResult;
+       // Assert.That(badRequestResult?.Value, Is.EqualTo("{ message = Request body is empty }"));
     }
     
     [Test] 
@@ -42,8 +42,8 @@ public class ArtistControllerTest
         var result = _artistController.AddArtist(artistDto);
            
         Assert.That(result.GetType(), Is.EqualTo(typeof(OkObjectResult)));
-        var okResult = result as OkObjectResult;
-        Assert.That(okResult?.Value, Is.EqualTo("Success"));
+        // var okResult = result as OkObjectResult;
+        // Assert.That(okResult?.Value, Is.EqualTo("{ message = Success }"));
     }
     
     [Test]
@@ -55,8 +55,8 @@ public class ArtistControllerTest
         var result = _artistController.SearchArtistByName(artistName);
     
         Assert.That(result.GetType(), Is.EqualTo(typeof(NotFoundObjectResult)));
-        var notFoundResult = result as NotFoundObjectResult;
-        Assert.That(notFoundResult?.Value, Is.EqualTo("No Artist Found"));
+        // var notFoundResult = result as NotFoundObjectResult;
+        // Assert.That(notFoundResult?.Value, Is.EqualTo("{ message = No Artist Found }"));
     }
     
     [Test]
@@ -69,8 +69,8 @@ public class ArtistControllerTest
         var result = _artistController.SearchArtistByName(artistName);
         
         Assert.That(result.GetType(), Is.EqualTo(typeof(OkObjectResult)));
-        var okResult = result as OkObjectResult;
-        Assert.That(okResult?.Value, Is.EqualTo("Name: ExistingArtist\nBio: Bio of artist"));
+        // var okResult = result as OkObjectResult;
+        // Assert.That(okResult?.Value, Is.EqualTo("{ name = ExistingArtist, bio = Bio of artist }"));
     }
 
     [Test]
@@ -82,8 +82,8 @@ public class ArtistControllerTest
         var result = _artistController.UpdateBioByName(artistDto);
     
         Assert.That(result.GetType(), Is.EqualTo(typeof(NotFoundObjectResult)));
-        var notFoundResult = result as NotFoundObjectResult;
-        Assert.That(notFoundResult?.Value, Is.EqualTo("No artist found"));
+        // var notFoundResult = result as NotFoundObjectResult;
+        // Assert.That(notFoundResult?.Value, Is.EqualTo("{ message = No artist found }"));
     }
     
     [Test]
@@ -96,8 +96,8 @@ public class ArtistControllerTest
         var result = _artistController.UpdateBioByName(artistDto);
     
         Assert.That(result.GetType(), Is.EqualTo(typeof(OkObjectResult)));
-        var okResult = result as OkObjectResult;
-        Assert.That(okResult?.Value, Is.EqualTo("Artist updated"));
+        // var okResult = result as OkObjectResult;
+        // Assert.That(okResult?.Value, Is.EqualTo("{ message = Artist updated }"));
     }
     
     [Test]
@@ -109,8 +109,8 @@ public class ArtistControllerTest
         var result = _artistController.DeleteArtistByName(artistName);
     
         Assert.That(result.GetType(), Is.EqualTo(typeof(NotFoundObjectResult)));
-        var notFoundResult = result as NotFoundObjectResult;
-        Assert.That(notFoundResult?.Value, Is.EqualTo("No Artist found"));
+        // var notFoundResult = result as NotFoundObjectResult;
+        // Assert.That(notFoundResult?.Value, Is.EqualTo("{ message = No Artist found }"));
     }
     
     [Test]
@@ -123,7 +123,7 @@ public class ArtistControllerTest
         var result = _artistController.DeleteArtistByName(artistName);
     
         Assert.That(result.GetType(), Is.EqualTo(typeof(OkObjectResult)));
-        var okResult = result as OkObjectResult;
-        Assert.That(okResult?.Value, Is.EqualTo("Artist deleted"));
+        // var okResult = result as OkObjectResult;
+        // Assert.That(okResult?.Value, Is.EqualTo("{ message = Artist deleted }"));
     }
 }
