@@ -59,5 +59,7 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
 app.MapControllers();
 app.Run();
