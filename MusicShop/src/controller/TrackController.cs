@@ -6,7 +6,7 @@ using MusicShop.repository;
 namespace MusicShop.controller;
 
 [ApiController]
-[Route("/api/search")]
+[Route("/api/track")]
 public class TrackController : ControllerBase
 {
     private readonly ITrackRepository _trackRepository;
@@ -25,6 +25,7 @@ public class TrackController : ControllerBase
     [HttpGet("name/{artistName}")]
     public string? SearchAllTracksByArtistName(String artistName)
     {
+        System.Console.WriteLine($"Search all tracks by {artistName}");
         if (artistName.Equals("Toxi$"))
         {
             return

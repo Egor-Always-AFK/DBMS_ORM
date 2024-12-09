@@ -20,4 +20,11 @@ public class Album
     
     [Column("media_id")]
     public long mediaId { get; set; }
+
+    public Album(long artistId, long mediaId, string title)
+    {
+        this.artistId = artistId;
+        this.mediaId = mediaId;
+        this.title = title;
+    }
 }

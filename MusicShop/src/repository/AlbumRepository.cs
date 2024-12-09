@@ -1,27 +1,40 @@
-﻿using MusicShop.model;
+﻿using MusicShop.config;
+using MusicShop.model;
 
 namespace MusicShop.repository;
 
 public class AlbumRepository : IAlbumRepository
 {
+    
+    private readonly ApplicationDbContext _context;
+    
+    public AlbumRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
     public Album getAlbumtById(int id)
     {
-        throw new NotImplementedException();
+        return _context.Albums.Find(id);
     }
 
-    public Album getAlbumtByName(string name)
+    public Album getAlbumByName(string name)
     {
-        throw new NotImplementedException();
+        return _context.Albums.FirstOrDefault(a => a.title == name);
     }
 
     public string? getAllAlbums()
     {
-        throw new NotImplementedException();
+        return _context.Albums.ToString();
     }
 
     public void addAlbums(Album? album)
     {
-        throw new NotImplementedException();
+        var found = _context.Albums.FirstOrDefault(a => a.title == album.title);
+        if ((found.artistId == album.artistId && found.mediaId != album.mediaId) && found == null)
+        {
+            _context.Albums.Add(album);
+            _context.SaveChanges();   
+        }
     }
 
     public void updateAlbum(Album album)
@@ -33,9 +46,5 @@ public class AlbumRepository : IAlbumRepository
     {
         throw new NotImplementedException();
     }
-
-    public Album? getAlbumByName(string name)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

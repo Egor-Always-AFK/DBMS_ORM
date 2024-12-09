@@ -6,7 +6,7 @@ public interface IAlbumRepository
 {
     Album getAlbumtById(int id);
 
-    Album getAlbumtByName(string name);
+    Album getAlbumByName(string name);
     
     string? getAllAlbums();
     
@@ -16,5 +16,4 @@ public interface IAlbumRepository
     
     void deleteAlbum(Album album);
     
-    Album? getAlbumByName(string name);
 }
