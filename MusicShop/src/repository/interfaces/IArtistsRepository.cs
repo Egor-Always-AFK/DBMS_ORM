@@ -4,7 +4,7 @@ namespace MusicShop.repository;
 
 public interface IArtistsRepository
 {
-    Artists? getArtistById(int id);
+    Artists? getArtistById(long id);
     
     string? getAllArtists();
     

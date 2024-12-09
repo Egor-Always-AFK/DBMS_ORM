@@ -19,9 +19,9 @@ public class ArtistRepository : IArtistsRepository
         return _context.Artists.FirstOrDefault(t => t.name.Equals(name));
     }
 
-    public Artists? getArtistById(int id)
+    public Artists? getArtistById(long id)
     {
-        throw _context.Artists.AsNoTracking().FirstOrDefault(a => a.id.Equals(id));
+        throw _context.Artists.Find(id);
     }
 
     public string? getAllArtists()

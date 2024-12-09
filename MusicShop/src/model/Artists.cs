@@ -22,4 +22,11 @@ public class Artists : Exception
         this.name = name;
         this.bio = bio;
     }
+
+    public Artists(long id, string name, string bio)
+    {
+        this.id = id;
+        this.name = name;
+        this.bio = bio;
+    }
 }
